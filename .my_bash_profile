@@ -1,7 +1,7 @@
 # OS Check
 if [ "$(uname)" == "Darwin" ]; then
     OS="Macintosh"
-elif [ "$(uname)" = "Linux" ]; then
+elif [ "$(uname)" == "Linux" ]; then
     OS="Linux"
 else
     OS="Unknown"
