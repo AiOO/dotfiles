@@ -1,0 +1,9 @@
+[user]
+    name = Ahn Kiwook
+    email = ahnkiwook@gmail.com
+
+[alias]
+    l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+
+[core]
+    editor = nvim
