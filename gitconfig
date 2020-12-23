@@ -1,9 +1,16 @@
 [user]
     name = Ahn Kiwook
     email = ahnkiwook@gmail.com
+    signingkey = 8563EA1EDFAD1AF20B246B0D63394967FE05FE7F
 
 [alias]
     l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 
 [core]
     editor = vim
+
+[commit]
+    gpgsign = true
+
+[init]
+    defaultBranch = main
