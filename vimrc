@@ -28,7 +28,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   " code
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'davidhalter/jedi-vim'
   " git
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/committia.vim'
