@@ -45,3 +45,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export WORKON_HOME=~/.venvs
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
+
+## gpg signing
+export GPG_TTY=$(tty)
