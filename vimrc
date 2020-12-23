@@ -4,9 +4,10 @@ set backspace=2
 set ts=4 sts=4 sw=4 et ai si
 set number
 set hlsearch
-set nofoldenable               " I don't like fold
-set fileencodings=utf8,euc-kr  " to open euc-kr encoded files
+set nofoldenable                   " I don't like fold
+set fileencodings=utf8,euc-kr      " to open euc-kr encoded files
 set colorcolumn=80
+set timeoutlen=1000 ttimeoutlen=0  " Remove ESC delay
 highlight ColorColumn ctermbg=DarkRed
 highlight ColorColumn guibg=DarkRed
 highlight Search ctermbg=Yellow ctermfg=Black cterm=none
