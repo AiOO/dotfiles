@@ -1,0 +1,36 @@
+{
+  "diagnostic-languageserver.filetypes": {
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.linters": {
+    "flake8": {
+      "sourceName": "flake8",
+      "command": "flake8",
+      "args": [
+        "%file"
+      ],
+      "formatPattern": [
+        "^(.+\\.py):(\\d+):(\\d+): (I|W|E|F)\\d+ (.+)$",
+        {
+          "line": 2,
+          "column": 3,
+          "security": 4,
+          "message": [5]
+        }
+      ],
+      "rootPatterns": ["pyproject.toml", "setup.py", "setup.cfg", ".git"],
+      "securities": {
+            "E": "error",
+            "W": "warning",
+            "I": "info",
+            "F": "error"
+      },
+      "requiredFiles": [
+          ".flake8",
+          "setup.cfg"
+      ],
+      "offsetColumn": 0,
+      "formatLines": 1
+    }
+  }
+}
