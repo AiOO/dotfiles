@@ -38,6 +38,15 @@ source /opt/Homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #### zsh-syntax-highlighting
 source /opt/Homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+### rust
+
+#### cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+#### exa
+if [ "$(which exa)" != "" ]; then
+    alias ls="exa"
+fi
 
 # etc...
 
