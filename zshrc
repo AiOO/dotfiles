@@ -1,5 +1,8 @@
 # shell
 
+## PROMPT
+export PROMPT="%n@%1~ %# "
+
 ## EDITOR
 export EDITOR="vim"
 
