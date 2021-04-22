@@ -6,11 +6,10 @@ export PROMPT="%n@%1~ %# "
 ## EDITOR
 export EDITOR="vim"
 
-
 # Homebrew
 
 ## path
-export PATH="/opt/Homebrew/bin:/usr/local/Hombrew/bin:$PATH"
+export PATH="/opt/Homebrew/bin:/usr/local/Homebrew/bin:$PATH"
 
 ## for multi architectures
 alias brew="/opt/Homebrew/bin/brew"
@@ -48,6 +47,11 @@ if [ "$(which exa)" != "" ]; then
     alias ls="exa"
 fi
 
+### nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/Homebrew/opt/nvm/nvm.sh" ] && . "/opt/Homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/Homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/Homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
 # etc...
 
 ## pipx
@@ -60,3 +64,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 ## gpg signing
 export GPG_TTY=$(tty)
+
+## terraform
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/Homebrew/bin/terraform terraform
