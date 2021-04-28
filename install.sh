@@ -9,6 +9,7 @@ vim \
     +'CocInstall coc-eslint' \
     +'CocInstall coc-jedi' \
     +'CocInstall coc-json' \
+    +'CocInstall coc-prettier' \
     +'qa'
 mkdir -p ~/.vim
 cp coc-settings.json ~/.vim/
