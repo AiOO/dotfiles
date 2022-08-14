@@ -1,4 +1,5 @@
 #!/bin/bash
+cp wezterm.lua ~/.wezterm.lua
 cp gitconfig ~/.gitconfig
 cp vimrc ~/.vimrc
 cp zshrc ~/.zshrc
