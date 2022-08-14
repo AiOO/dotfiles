@@ -9,11 +9,12 @@ export EDITOR="vim"
 # Homebrew
 
 ## path
-export PATH="/opt/Homebrew/bin:/usr/local/Homebrew/bin:$PATH"
+export PATH="/opt/Homebrew/bin:/opt/Homebrew/sbin:/usr/local/Homebrew/bin:/usr/local/Homebrew/sbin:$PATH"
 
 ## for multi architectures
-alias brew="/opt/Homebrew/bin/brew"
 alias ibrew="arch -x86_64 /usr/local/Homebrew/bin/brew"
+alias ipython="/usr/local/Homebrew/Cellar/python@3.9/3.9.13_1/bin/python3"
+alias ipip="/usr/local/Homebrew/Cellar/python@3.9/3.9.13_1/bin/pip3"
 
 ## for packages
 
@@ -44,7 +45,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 #### exa
 if [ "$(which exa)" != "" ]; then
-    alias ls="exa"
+  alias ls="exa"
 fi
 
 ### nvm
@@ -55,15 +56,14 @@ export NVM_DIR="$HOME/.nvm"
 # etc...
 
 ## pipx
+export PIPX_DEFAULT_PYTHON="$(which python3)"
 export PATH="$HOME/.local/bin:$PATH"
 
 ## virtualenvwrapper
 export WORKON_HOME=~/.venvs
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/local/bin/virtualenvwrapper.sh
-
-## gpg signing
-export GPG_TTY=$(tty)
+export VIRTUALENVWRAPPER_PYTHON="$HOME/.local/pipx/venvs/virtualenvwrapper/bin/python"
+export VIRTUALENVWRAPPER_VIRTUALENV="$HOME/.local/pipx/venvs/virtualenvwrapper/bin/virtualenv"
+source "$HOME/.local/pipx/venvs/virtualenvwrapper/bin/virtualenvwrapper.sh"
 
 ## terraform
 autoload -U +X bashcompinit && bashcompinit

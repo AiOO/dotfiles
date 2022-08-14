@@ -1,7 +1,7 @@
 " editor configs
 syntax enable
 set backspace=2
-set ts=4 sts=4 sw=4 et ai si
+set ts=2 sts=2 sw=2 et ai si
 set number
 set hlsearch
 set nofoldenable                   " I don't like fold
@@ -27,6 +27,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   " code
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'hashivim/vim-terraform'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'styled-components/vim-styled-components'
   " git
   Plug 'tpope/vim-fugitive'
   Plug 'rhysd/committia.vim'
@@ -38,11 +41,16 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 highlight CocFloating ctermbg=Black
 
+" plugin-relative code configs
+let g:terraform_fmt_on_save = 1
+
 " per file type
-au FileType python setl colorcolumn=80
-au FileType typescript setl colorcolumn=120
-au FileType typescriptreact setl syntax=typescript colorcolumn=120
-au FileType javascript setl colorcolumn=120
+au FileType python setl colorcolumn=80 ts=4 sts=4 sw=4
+au FileType typescript setl colorcolumn=121
+au FileType typescriptreact setl colorcolumn=121
+au FileType javascript setl colorcolumn=121
+au FileType javascriptreact setl colorcolumn=121
+au BufEnter * syntax sync fromstart
 
 " coc configs from https://github.com/neoclide/coc.nvim
 
@@ -54,33 +62,28 @@ au FileType javascript setl colorcolumn=120
   " delays and poor user experience.
   set updatetime=300
 
-  " Don't pass messages to |ins-completion-menu|.
-  set shortmess+=c
-
   " Use K to show documentation in preview window.
-  function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-      execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
+  function! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
       call CocActionAsync('doHover')
     else
-      execute '!' . &keywordprg . " " . expand('<cword>')
+      call feedkeys('K', 'in')
     endif
   endfunction
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nnoremap <silent> K :call ShowDocumentation()<CR>
 
   " Use tab for trigger completion with characters ahead and navigate.
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
   " other plugin before putting this into your config.
-  function! s:check_back_space() abort
+  function! CheckBackspace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
   endfunction
   inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#pum#visible() ? coc#pum#next(1):
+        \ CheckBackspace() ? "\<Tab>" :
         \ coc#refresh()
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
   " GoTo code navigation.
   nmap <silent> gd <Plug>(coc-definition)
@@ -90,3 +93,6 @@ au FileType javascript setl colorcolumn=120
 
   " Highlight the symbol and its references when holding the cursor.
   autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " Add `:Format` command to format current buffer.
+  command! -nargs=0 Format :call CocActionAsync('format')
