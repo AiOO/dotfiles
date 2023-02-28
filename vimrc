@@ -50,6 +50,7 @@ au FileType typescript setl colorcolumn=121
 au FileType typescriptreact setl colorcolumn=121
 au FileType javascript setl colorcolumn=121
 au FileType javascriptreact setl colorcolumn=121
+au FileType markdown setl colorcolumn=81 formatoptions+=a
 au BufEnter * syntax sync fromstart
 
 " coc configs from https://github.com/neoclide/coc.nvim

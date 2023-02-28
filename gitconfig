@@ -8,6 +8,7 @@
 
 [core]
     editor = vim
+    excludesFile = /Users/ahnkiwook/.gitignore
 
 [commit]
     gpgsign = true

@@ -1,6 +1,7 @@
 #!/bin/bash
 cp wezterm.lua ~/.wezterm.lua
 cp gitconfig ~/.gitconfig
+cp gitignore ~/.gitignore
 cp vimrc ~/.vimrc
 cp zshrc ~/.zshrc
 vim \
