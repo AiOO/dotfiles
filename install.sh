@@ -4,6 +4,7 @@ cp gitconfig ~/.gitconfig
 cp gitignore ~/.gitignore
 cp vimrc ~/.vimrc
 cp zshrc ~/.zshrc
+cp p10k.zsh ~/.p10k.zsh
 vim \
     +'PlugInstall' \
     +'CocInstall coc-tsserver' \
