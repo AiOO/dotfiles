@@ -6,37 +6,35 @@ export PROMPT="%n@%1~ %# "
 ## EDITOR
 export EDITOR="vim"
 
+# python
+export PATH="/Users/ahnkiwook/Library/Python/3.9/bin:$PATH"
+
 # Homebrew
 
 ## path
-export PATH="/opt/Homebrew/bin:/opt/Homebrew/sbin:/usr/local/Homebrew/bin:/usr/local/Homebrew/sbin:$PATH"
-
-## for multi architectures
-alias ibrew="arch -x86_64 /usr/local/Homebrew/bin/brew"
-alias ipython="/usr/local/Homebrew/Cellar/python@3.9/3.9.13_1/bin/python3"
-alias ipip="/usr/local/Homebrew/Cellar/python@3.9/3.9.13_1/bin/pip3"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/homebrew/bin:/usr/local/homebrew/sbin:$PATH"
 
 ## for packages
 
 ### openssl
-export PATH="/opt/Homebrew/opt/openssl/bin:$PATH"
-export CFLAGS="-I/opt/Homebrew/opt/openssl/include"
-export LDFLAGS="-L/opt/Homebrew/opt/openssl/lib"
+export PATH="/opt/homebrew/opt/openssl/bin:$PATH"
+export CFLAGS="-I/opt/homebrew/opt/openssl/include"
+export LDFLAGS="-L/opt/homebrew/opt/openssl/lib"
 
 ### zsh
 
 #### zsh-completion
 if type brew &>/dev/null; then
-  FPATH=/opt/Homebrew/share/zsh-completions:$FPATH
+  FPATH=/opt/homebrew/share/zsh-completions:$FPATH
   autoload -Uz compinit
   compinit
 fi
 
 #### zsh-autosuggestions
-source /opt/Homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #### zsh-syntax-highlighting
-source /opt/Homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #### share history
 setopt share_history
@@ -53,8 +51,8 @@ fi
 
 ### nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/Homebrew/opt/nvm/nvm.sh" ] && . "/opt/Homebrew/opt/nvm/nvm.sh"
-[ -s "/opt/Homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/Homebrew/opt/nvm/etc/bash_completion.d/nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
 # etc...
 
@@ -70,22 +68,13 @@ source "$HOME/.local/pipx/venvs/virtualenvwrapper/bin/virtualenvwrapper.sh"
 
 ## terraform
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/Homebrew/bin/terraform terraform
+complete -o nospace -C /usr/local/homebrew/bin/terraform terraform
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
-
+## Zinit installer
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
